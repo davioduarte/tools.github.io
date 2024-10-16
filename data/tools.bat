@@ -37,14 +37,16 @@ if %errorlevel% neq 0 (
     echo.       [ 2 ] - Desistalar Netskope
     echo.       [ 3 ] - Reparo Windows
     echo.       [ 4 ] - Formatar Pendrive para boot
+    echo.       [ 5 ] - Compactar OS
     echo -----------------------------------------------------------------
 
-    choice /c 1234 /n /m "Digite uma opcao:"
+    choice /c 12345 /n /m "Digite uma opcao:"
     cls
     if %errorlevel%==1 goto limpar_sistema
     if %errorlevel%==2 goto desistalar_netskope
     if %errorlevel%==3 goto reparo_windows
     if %errorlevel%==4 goto reparo_windows
+    if %errorlevel%==5 goto compactar_os
 
 :fim_operacao
     echo.
@@ -142,6 +144,7 @@ if %errorlevel% neq 0 (
 	goto fim_operacao
 
 :diskpartInicio
+
     title ========== Criando Pendrive Botavel =============
 
 	set diret="c:\Users\Public\Downloads\scriptboot.bin"
@@ -188,3 +191,12 @@ if %errorlevel% neq 0 (
 	echo.=== para o pendrive formatado ==============
 	echo.
 	goto diskpartfinal
+
+:compactar_os
+    cls
+	
+	echo. Compactando Sistema...
+	
+	compact.exe /CompactOS:always
+
+	goto fim_operacao
