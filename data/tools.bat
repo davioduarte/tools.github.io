@@ -40,7 +40,7 @@ if %errorlevel% neq 0 (
     echo.       [ 5 ] - Compactar OS
     echo ---------------------------------------------------------------------
     echo v0.1
-
+    echo.
     choice /c 12345 /n /m "Digite uma opcao:"
     cls
     if %errorlevel%==1 goto limpar_sistema
