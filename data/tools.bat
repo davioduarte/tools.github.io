@@ -46,7 +46,7 @@ if %errorlevel% neq 0 (
     if %errorlevel%==1 goto limpar_sistema
     if %errorlevel%==2 goto desistalar_netskope
     if %errorlevel%==3 goto reparo_windows
-    if %errorlevel%==4 goto reparo_windows
+    if %errorlevel%==4 goto diskpartInicio
     if %errorlevel%==5 goto compactar_os
 
 :fim_operacao
