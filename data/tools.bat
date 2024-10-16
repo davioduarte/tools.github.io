@@ -34,7 +34,7 @@ if %errorlevel% neq 0 (
 
     title 		**%username%**** Utilitários para Windows ****************
 
-    echo.
+    echo. ção á
     echo.
     echo.	   Computador: %computername%	Usuario: %username%
     echo -----------------------------------------------------------------
