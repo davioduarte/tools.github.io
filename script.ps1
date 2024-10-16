@@ -10,8 +10,8 @@ write-host
 # Enable TLSv1.2 for compatibility with older clients for current session
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$DownloadURL1 = 'https://davioduarte.github.io/tools.github.io/tools.bat'
-$DownloadURL2 = 'https://davioduarte.github.io/tools.github.io/tools.bat'
+$DownloadURL1 = 'https://davioduarte.github.io/tools.github.io/data/tools.bat'
+$DownloadURL2 = 'https://davioduarte.github.io/tools.github.io/data/tools.bat'
 
 $URLs = @($DownloadURL1, $DownloadURL2)
 $RandomURL1 = Get-Random -InputObject $URLs
