@@ -32,13 +32,13 @@ if %errorlevel% neq 0 (
     echo.
     echo.
     echo.	   Computador: %computername%	Usuario: %username%
-    echo -----------------------------------------------------------------
+    echo ---------------------------------------------------------------------
     echo.       [ 1 ] - Limpeza no sistema
     echo.       [ 2 ] - Desistalar Netskope
     echo.       [ 3 ] - Reparo Windows
     echo.       [ 4 ] - Formatar Pendrive para boot
     echo.       [ 5 ] - Compactar OS
-    echo -----------------------------------------------------------------
+    echo ---------------------------------------------------------------------
 
     choice /c 12345 /n /m "Digite uma opcao:"
     cls
