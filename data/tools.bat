@@ -39,7 +39,7 @@ if %errorlevel% neq 0 (
     echo.       [ 4 ] - Formatar Pendrive para boot
     echo -----------------------------------------------------------------
 
-    choice /c 1234 /n /m "Digite uma opção:"
+    choice /c 1234 /n /m "Digite uma opcao:"
     cls
     if %errorlevel%==1 goto limpar_sistema
     if %errorlevel%==2 goto desistalar_netskope
