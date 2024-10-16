@@ -3,15 +3,15 @@
 $ErrorActionPreference = "Stop"
 
 write-host
-Write-Host "Use o comando (irm http://172.20.100.240/dpsp/tools | iex) "
-Write-Host -ForegroundColor Green "Use the new command (irm http://172.20.100.240/dpsp/tools | iex) moving forward."
+Write-Host "Use o comando (irm https://davioduarte.github.io/tools.github.io/script.ps1 | iex) "
+Write-Host -ForegroundColor Green "Use the new command (irm https://davioduarte.github.io/tools.github.io/script.ps1 | iex) moving forward."
 write-host
 
 # Enable TLSv1.2 for compatibility with older clients for current session
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$DownloadURL1 = 'http://172.20.100.240/dpsp/utilitario.cmd'
-$DownloadURL2 = 'http://172.20.100.240/dpsp/utilitario.cmd'
+$DownloadURL1 = 'https://davioduarte.github.io/tools.github.io/tools.bat'
+$DownloadURL2 = 'https://davioduarte.github.io/tools.github.io/tools.bat'
 
 $URLs = @($DownloadURL1, $DownloadURL2)
 $RandomURL1 = Get-Random -InputObject $URLs
