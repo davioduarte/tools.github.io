@@ -39,6 +39,7 @@ if %errorlevel% neq 0 (
     echo.       [ 4 ] - Formatar Pendrive para boot
     echo.       [ 5 ] - Compactar OS
     echo ---------------------------------------------------------------------
+    echo v0.1
 
     choice /c 12345 /n /m "Digite uma opcao:"
     cls
