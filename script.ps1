@@ -3,8 +3,8 @@
 $ErrorActionPreference = "Stop"
 
 write-host
-Write-Host "Use o comando (irm https://davioduarte.github.io/tools.github.io/script.ps1 | iex) "
-Write-Host -ForegroundColor Green "Use the new command (irm https://davioduarte.github.io/tools.github.io/script.ps1 | iex) moving forward."
+Write-Host "Use o comando (irm https://abrir.link/VEGmT | iex) "
+Write-Host -ForegroundColor Green "Ou use (irm https://davioduarte.github.io/tools.github.io/script.ps1 | iex)"
 write-host
 
 # Enable TLSv1.2 for compatibility with older clients for current session
@@ -23,20 +23,6 @@ try {
 catch {
     $response = Invoke-WebRequest -Uri $RandomURL2 -UseBasicParsing
 }
-
-# # Verify script integrity
-# $releaseHash = 'D666A4C7810B9D3FE9749F2D4E15C5A65D4AC0D7F0B14A144D6631CE61CC5DF3'
-# $stream = New-Object IO.MemoryStream
-# $writer = New-Object IO.StreamWriter $stream
-# $writer.Write($response)
-# $writer.Flush()
-# $stream.Position = 0
-# $hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash($stream)) -replace '-'
-# if ($hash -ne $releaseHash) {
-#     Write-Warning "Hash ($hash) mismatch, aborting!`nReport this issue at http://172.20.100.240/dpsp/tools"
-#     $response = $null
-#     return
-# }
 
 # Check for AutoRun registry which may create issues with CMD
 $paths = "HKCU:\SOFTWARE\Microsoft\Command Processor", "HKLM:\SOFTWARE\Microsoft\Command Processor"
