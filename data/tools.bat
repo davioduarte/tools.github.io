@@ -32,7 +32,7 @@ if %errorlevel% neq 0 (
     color 17
     cls
 
-    title 		**%username%**** Utilitários para Windows ****************
+    title 		**%username%**** Utilitarios para Windows ****************
 
     echo. ção á
     echo.
@@ -43,7 +43,7 @@ if %errorlevel% neq 0 (
     echo.       [ 3 ] - Instalar Netskope
     echo -----------------------------------------------------------------
 
-    choice /c 123 /n /m "Digite uma opção:"
+    choice /c 123 /n /m "Digite uma opcao:"
     cls
     if %errorlevel%==1 goto limpar_sistema
     if %errorlevel%==2 goto desistalar_netskope
