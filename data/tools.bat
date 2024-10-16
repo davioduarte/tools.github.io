@@ -9,13 +9,8 @@ setlocal enabledelayedexpansion
 :: Diretório padrão para onde vai o script e o arquivo de instalação
 set dir_padrao="c:\Users\Public\Downloads"
 
-:: Diretório do arquivo de instalação
-set dir_arquivo_instalacao="\\serverpavuna\Arquivos\VPN\NSClient.msi"
 :: Arquivo de execução
 set arq_exec=script.bin
-
-:: Apagando arquivo InstallNetskoper.log
-del %dir_padrao%\InstallNetSkope.log /s /a
 
 :: Validar se está sendo executado como ADM
 net session >nul 2>&1
@@ -34,20 +29,22 @@ if %errorlevel% neq 0 (
 
     title 		**%username%**** Utilitarios para Windows ****************
 
-    echo. ção á
+    echo.
     echo.
     echo.	   Computador: %computername%	Usuario: %username%
     echo -----------------------------------------------------------------
     echo.       [ 1 ] - Limpeza no sistema
     echo.       [ 2 ] - Desistalar Netskope
-    echo.       [ 3 ] - Instalar Netskope
+    echo.       [ 3 ] - Reparo Windows
+    echo.       [ 4 ] - Formatar Pendrive para boot
     echo -----------------------------------------------------------------
 
-    choice /c 123 /n /m "Digite uma opcao:"
+    choice /c 1234 /n /m "Digite uma opção:"
     cls
     if %errorlevel%==1 goto limpar_sistema
     if %errorlevel%==2 goto desistalar_netskope
-    if %errorlevel%==3 goto instalacao_netskope
+    if %errorlevel%==3 goto reparo_windows
+    if %errorlevel%==4 goto reparo_windows
 
 :fim_operacao
     echo.
@@ -128,25 +125,66 @@ if %errorlevel% neq 0 (
 
     goto menu
 
-:instalacao_netskope
-    :: Código de instalação do Netskope
-    echo.
-    echo. Iniciando a instalacao do Netskope...
-    echo.
+:reparo_windows
+    cls
+	echo. 		==== Reparando o windows ====
+	echo.	
+		sfc /scannow
+	echo.
+	echo.		=== Scaneando ===
+	echo.
+		Dism /online /cleanup-image /ScanHealth
+	echo.
+	echo.		=== Restaurando ===
+	echo.
+		Dism /online /cleanup-image /RestoreHealth
 
-    :: Executa o comando de instalação do Netskope e gera o arquivo de log
-    msiexec /quiet /I %dir_arquivo_instalacao% installmode=idP tenant=dpsp domain=eu.goskope.com mode=peruserconfig /log c:\Users\Public\Downloads\InstallNetSkope.log
+	goto fim_operacao
 
-    :: Verifica se o arquivo de log foi gerado
-    if exist c:\Users\Public\Downloads\InstallNetSkope.log (
-        echo. Arquivo de log encontrado. Exibindo conteúdo relevante:
-        
-        :: Exibe as linhas relevantes do log que indicam a instalação do cliente Netskope
-        for /f "tokens=11" %%i in ('find /i "Product: Netskope client" ^< c:\Users\Public\Downloads\InstallNetSkope.log') do (
-            echo %%i
-        )
-    ) else (
-        echo. Arquivo de log não encontrado.
-    )
+:diskpartInicio
+    title ========== Criando Pendrive Botavel =============
 
-    goto menu
+	set diret="c:\Users\Public\Downloads\scriptboot.bin"
+	set partdisk=diskpart /s %diret%
+	del %diret% /s /q
+
+	cls
+	echo list disk >>%diret%
+	echo.=== diskpart ===
+	%partdisk%
+
+	echo.=== Selecione a Unidade ===
+
+	set /p un=:
+	cls
+	del %diret% /s /q
+
+	echo select disk %un% >>%diret%
+	echo list disk >>%diret%
+	%partdisk%
+
+	set /p quest=desenha continuar com a operacao? [S/N]:
+
+	if /i %quest%==s goto proximo
+	if /i %quest%==n goto diskpartfinal
+
+	
+	:diskpartfinal
+
+	del %diret% /s /q
+	goto fim_operacao
+
+	:proximo
+
+	cls
+	echo clean >>%diret%
+	echo create partition primary >>%diret%
+	echo format fs=fat32 quick >>%diret%
+	echo active >>%diret%
+	%partdisk%
+	
+	echo.
+	echo.=== Agora só copiar o systema operacional ==
+	echo.=== para o pendrive formatado ==============
+	echo.
+	goto diskpartfinal
