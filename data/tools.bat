@@ -38,16 +38,18 @@ if %errorlevel% neq 0 (
     echo.       [ 3 ] - Reparo Windows
     echo.       [ 4 ] - Formatar Pendrive para boot
     echo.       [ 5 ] - Compactar OS
+    echo.       [ 6 ] - Reset placa de Rede
     echo ---------------------------------------------------------------------
     echo v0.1
     echo.
-    choice /c 12345 /n /m "Digite uma opcao:"
+    choice /c 123456 /n /m "Digite uma opcao:"
     cls
     if %errorlevel%==1 goto limpar_sistema
     if %errorlevel%==2 goto desistalar_netskope
     if %errorlevel%==3 goto reparo_windows
     if %errorlevel%==4 goto diskpartInicio
     if %errorlevel%==5 goto compactar_os
+    if %errorlevel%==6 goto reset_rede
 
 :fim_operacao
     echo.
@@ -200,4 +202,14 @@ if %errorlevel% neq 0 (
 	
 	compact.exe /CompactOS:always
 
+	goto fim_operacao
+
+:reset_rede
+	echo.
+	echo. Iniciando reset da placa de Rede
+
+	netsh winsock reset
+
+	echo.
+	
 	goto fim_operacao
