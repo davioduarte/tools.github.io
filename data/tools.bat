@@ -40,7 +40,7 @@ if %errorlevel% neq 0 (
     echo.       [ 5 ] - Compactar OS
     echo.       [ 6 ] - Reset placa de Rede
     echo ---------------------------------------------------------------------
-    echo v0.1
+    echo v0.2
     echo.
     choice /c 123456 /n /m "Digite uma opcao:"
     cls
